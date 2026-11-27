@@ -21,13 +21,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install uv and set up Python
-        uses: astral-sh/setup-uv@v4
-        with:
-          enable-cache: false
-
       - name: Install dependencies
-        run: uv sync
+        run: |
+          uv venv
+          uv pip install pytest
+          if [ -f requirements.txt ]; then uv pip install -r requirements.txt; fi
+
+      - name: Test with pytest
+        run: uv run pytest
 
       - name: Lint with flake8
         run: |
