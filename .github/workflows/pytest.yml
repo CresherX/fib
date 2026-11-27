@@ -24,10 +24,10 @@ jobs:
       - name: Install uv and set up Python
         uses: astral-sh/setup-uv@v4
         with:
-          enable-cache: true
+          enable-cache: false
 
       - name: Install dependencies
-        run: uv sync --locked
+        run: uv sync
 
       - name: Lint with flake8
         run: |
